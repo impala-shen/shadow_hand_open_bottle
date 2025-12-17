@@ -1,0 +1,483 @@
+<!-- See LICENSE.md for legal notices. LICENSE.md must be kept together with this file. -->
+<mujoco>
+    <body name="robot0:hand mount" pos="1 1.25 0.15" euler="1.5708 0 0"> 
+        <inertial mass="0.1" pos="0 0 0" diaginertia="0.001 0.001 0.001"></inertial>
+        <body childclass="robot0:asset_class" name="robot0:forearm" pos="0 0.01 0" euler="0 0 0">
+            <inertial pos="0.001 -0.002 0.29" quat="0.982 -0.016 0 -0.188" mass="4" diaginertia="0.01 0.01 0.0075"></inertial>
+            <geom class="robot0:D_Vizual" pos="0 0.01 0.04" name="robot0:V_forearm" mesh="robot0:forearm" euler="0 0 1.57"></geom>
+            <!--<geom class="robot0:DC_Hand" name="robot0:C_forearm" type="mesh" mesh="robot0:forearm_cvx" pos="0 0.01 0.04" euler="0 0 1.57" rgba="0.4 0.5 0.6 0.7"></geom>-->
+            <body name="robot0:wrist" pos="0 0 0.256">
+                <inertial pos="0.003 0 0.016" quat="0.504 0.496 0.495 0.504" mass="0.3" diaginertia="0.001 0.001 0.001"></inertial>
+                <!--<joint name="robot0:WRJ1" type="fixed" pos="0 0 0"></joint> <joint name="robot0:WRJ1" type="hinge" pos="0 0 0" axis="0 1 0" range="-0.489 0.14" damping="0.5" armature="0.005" user="1123"></joint>-->
+                <geom class="robot0:D_Vizual_Yellow" name="robot0:V_wrist" mesh="robot0:wrist"></geom>
+                <!--<geom class="robot0:DC_Hand" name="robot0:C_wrist" type="capsule" pos="0 0 0" quat="0.707 0.707 0 0" size="0.015 0.01" rgba="0.4 0.5 0.6 0.1"></geom>-->
+                <body name="robot0:palm" pos="0 0 0.034">
+                    <inertial pos="0.006 0 0.036" quat="0.716 0.044 0.075 0.693" mass="0.3" diaginertia="0.001 0.001 0.001"></inertial>
+                    <!-- <joint name="robot0:WRJ0" type="fixed" pos="0 0 0"></joint> <joint name="robot0:WRJ0" type="hinge" pos="0 0 0" axis="1 0 0" range="-0.698 0.489" damping="0.5" armature="0.005" user="1122"></joint>-->
+                    <geom class="robot0:D_Vizual_Green" name="robot0:V_palm" mesh="robot0:palm"></geom>
+                    <geom class="robot0:DC_Hand" name="robot0:C_palm0" type="box" pos="0.011 0 0.038" size="0.01 0.0111 0.01" rgba="0.4 0.5 0.6 0.1"></geom> 
+                    <!-- <geom class="robot0:DC_Hand" name="robot0:C_palm0" type="box" pos="0.011 0 0.038" size="0.032 0.0111 0.049" rgba="0.4 0.5 0.6 0.1"></geom> -->
+                    <!--<geom class="robot0:DC_Hand" name="robot0:C_palm1" type="box" pos="-0.032 0 0.014" size="0.011 0.0111 0.025" rgba="0.4 0.5 0.6 0.1"></geom> -->
+                    <body name="robot0:ffknuckle" pos="0.033 0 0.095">
+                        <inertial pos="0 0 0" quat="0.52 0.854 0.006 -0.003" mass="0.008" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                        <joint name="robot0:FFJ3" type="hinge" pos="0 0 0" axis="0 -1 0" range="-0.349 0.349" user="1103"></joint>
+                        <geom class="robot0:D_Vizual" name="robot0:V_ffknuckle" mesh="robot0:knuckle"></geom>
+                        <body name="robot0:ffproximal" pos="0 0 0">
+                            <inertial pos="0 0 0.023" quat="0.707 -0.004 0.004 0.707" mass="0.014" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                            <joint name="robot0:FFJ2" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.571" user="1102"></joint>
+                            <geom class="robot0:D_Vizual_Purple" name="robot0:V_ffproximal" mesh="robot0:F3"></geom>
+                            <geom class="robot0:DC_Hand" name="robot0:C_ffproximal" type="capsule" pos="0 0 0.0225" size="0.01 0.0225"></geom>
+                            <body name="robot0:ffmiddle" pos="0 0 0.045">
+                                <inertial pos="0 0 0.011" quat="0.707 0 0 0.707" mass="0.012" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                                <joint name="robot0:FFJ1" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.571" user="1101"></joint>
+                                <geom class="robot0:D_Vizual" name="robot0:V_ffmiddle" mesh="robot0:F2"></geom>
+                                <geom class="robot0:DC_Hand" name="robot0:C_ffmiddle" type="capsule" pos="0 0 0.0125" size="0.00805 0.0125"></geom>
+                                <body name="robot0:ffdistal" pos="0 0 0.025">
+                                    <inertial pos="0 0 0.015" quat="0.707 -0.003 0.003 0.707" mass="0.01" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                                    <joint name="robot0:FFJ0" type="hinge" pos="0 0 0" axis="1 0 0" range="0 0.001" user="1100"></joint> <!-- <joint name="robot0:FFJ0" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.571" user="1100"></joint> -->
+                                    <geom class="robot0:D_Vizual_Orange" name="robot0:V_ffdistal" mesh="robot0:F1"></geom>
+                                    <geom class="robot0:DC_Hand" name="robot0:C_ffdistal" type="capsule" pos="0 0 0.012" size="0.00705 0.012" condim="4"></geom>
+                                    
+                                    <!--<geom class="robot0:DC_Hand" name="robot0:C_ffdistal" type="capsule" pos="0 0 0.012" size="0.00705 0.012" condim="4"></geom>-->
+                                        <body name="robot0:fftip" pos="0 0 0.026">
+                                        </body>
+                                        <body name="rh_ff_taxel_0" pos="-0.00921687001 0.00099373239 0.02038228873" euler="-1.51978666 0.000144937453 1.45968674">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_0" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_1" pos="-0.00640312645 -0.0065173749 0.01827037076" euler="-1.59559695 -0.000348829319 2.41934577">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_1" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_2" pos="-0.00665973941 -0.00576875338 0.01260740369" euler="-1.65955903 -0.00541627 2.51722701">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_2" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_3" pos="-0.00942467165 0.00123111485 0.01395952052" euler="-1.54268087 6.45535715e-05 1.40876949">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_3" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_4" pos="-0.00867928261 0.00090325075 0.02632664124" euler="-1.29061943 0.00168711 1.52628765">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_4" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_5" pos="0.00569565306 -0.00539249259 0.0253778316" euler="-1.19846222 0.08480638 -2.49594701">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_5" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_6" pos="0.00871833126 0.00099431703 0.0261743809" euler="-1.29057253 -0.00189879 -1.52072868">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_6" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_7" pos="0.00664900914 -0.00630558868 0.01851538873" euler="-1.60361784 0.00059566203 -2.40698274">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_7" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_8" pos="0.00014411317 -0.008049275 0.01493110936" euler="-1.65580869 0.00183052213 -3.13786483">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_8" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_9" pos="-0.00573814208 -0.00542709679 0.02524200553" euler="-1.19878812 -0.08458215 2.49544358">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_9" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_10" pos="0.00942258829 0.00115158208 0.01454831045" euler="-1.54285408 -5.71837391e-05 -1.42527418">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_10" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_11" pos="0.0038067269 -0.00023025534 0.03188900555" euler="-0.46989731 0.10702183 -1.78833246">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_11" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_12" pos="2.61279781e-05 -0.00484799149 0.0292631876" euler="-0.90945336 -0.00352009 -3.1076869">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_12" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_13" pos="-0.00392243091 -5.411787e-05 0.03187189268" euler="0.40261749 0.27093248 -1.7070713">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_13" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_14" pos="0.00672575877 -0.0056872052 0.01228742454" euler="-1.653756 0.00455583 -2.49848336">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_14" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_15" pos="0.00919364576 0.00107233058 0.02073499409" euler="-1.52010616 -0.000102741516 -1.49088185">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_15" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_ff_taxel_16" pos="0.00016191958 -0.00800774967 0.02215694734" euler="-1.38286616 0.00525309 -3.12116599">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_fftax_16" mesh="robot0:sphere"/>
+                                        </body>
+
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                    <body name="robot0:mfknuckle" pos="0.011 0 0.099">
+                        <inertial pos="0 0 0" quat="0.52 0.854 0.006 -0.003" mass="0.008" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                        <joint name="robot0:MFJ3" type="hinge" pos="0 0 0" axis="0 -1 0" range="-0.349 0.349" user="1107"></joint>
+                        <geom class="robot0:D_Vizual" name="robot0:V_mfknuckle" mesh="robot0:knuckle"></geom>
+                        <body name="robot0:mfproximal" pos="0 0 0">
+                            <inertial pos="0 0 0.023" quat="0.707 -0.004 0.004 0.707" mass="0.014" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                            <joint name="robot0:MFJ2" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.571" user="1106"></joint>
+                            <geom class="robot0:D_Vizual_Purple" name="robot0:V_mfproximal" mesh="robot0:F3"></geom>
+                            <geom class="robot0:DC_Hand" name="robot0:C_mfproximal" type="capsule" pos="0 0 0.0225" size="0.01 0.0225"></geom>
+                            <body name="robot0:mfmiddle" pos="0 0 0.045">
+                                <inertial pos="0 0 0.012" quat="0.707 0 0 0.707" mass="0.012" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                                <joint name="robot0:MFJ1" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.571" user="1105"></joint>
+                                <geom class="robot0:D_Vizual" name="robot0:V_mfmiddle" mesh="robot0:F2"></geom>
+                                <geom class="robot0:DC_Hand" name="robot0:C_mfmiddle" type="capsule" pos="0 0 0.0125" size="0.00805 0.0125"></geom>
+                                <body name="robot0:mfdistal" pos="0 0 0.025">
+                                    <inertial pos="0 0 0.015" quat="0.707 -0.003 0.003 0.707" mass="0.01" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                                    <joint name="robot0:MFJ0" type="hinge" pos="0 0 0" axis="1 0 0" range="0 0.001" user="1104"></joint> <!--<joint name="robot0:MFJ0" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.571" user="1104"></joint>-->
+                                    <geom class="robot0:D_Vizual_Orange" name="robot0:V_mfdistal" mesh="robot0:F1"></geom>
+                                    <geom class="robot0:DC_Hand" name="robot0:C_mfdistal" type="capsule" pos="0 0 0.012" size="0.00705 0.012" condim="4"></geom>
+                                    <!--<site name="robot0:S_mftip" pos="0 0 0.026" group="3"></site>-->
+                                    <!--<site class="robot0:D_Touch" name="robot0:Tch_mftip"></site>-->
+                                        <body name="robot0:mftip" pos="0 0 0.026">
+                                        </body>
+                                        <body name="rh_mf_taxel_0" pos="-0.00921687001 0.00099373239 0.02038228873" euler="-1.51978666 0.000144937453 1.45968674">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_0" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_1" pos="-0.00640312645 -0.0065173749 0.01827037076" euler="-1.59559695 -0.000348829319 2.41934577">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_1" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_2" pos="-0.00665973941 -0.00576875338 0.01260740369" euler="-1.65955903 -0.00541627 2.51722701">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_2" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_3" pos="-0.00942467165 0.00123111485 0.01395952052" euler="-1.54268087 6.45535715e-05 1.40876949">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_3" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_4" pos="-0.00867928261 0.00090325075 0.02632664124" euler="-1.29061943 0.00168711 1.52628765">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_4" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_5" pos="0.00569565306 -0.00539249259 0.0253778316" euler="-1.19846222 0.08480638 -2.49594701">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_5" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_6" pos="0.00871833126 0.00099431703 0.0261743809" euler="-1.29057253 -0.00189879 -1.52072868">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_6" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_7" pos="0.00664900914 -0.00630558868 0.01851538873" euler="-1.60361784 0.00059566203 -2.40698274">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_7" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_8" pos="0.00014411317 -0.008049275 0.01493110936" euler="-1.65580869 0.00183052213 -3.13786483">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_8" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_9" pos="-0.00573814208 -0.00542709679 0.02524200553" euler="-1.19878812 -0.08458215 2.49544358">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_9" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_10" pos="0.00942258829 0.00115158208 0.01454831045" euler="-1.54285408 -5.71837391e-05 -1.42527418">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_10" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_11" pos="0.0038067269 -0.00023025534 0.03188900555" euler="-0.46989731 0.10702183 -1.78833246">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_11" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_12" pos="2.61279781e-05 -0.00484799149 0.0292631876" euler="-0.90945336 -0.00352009 -3.1076869">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_12" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_13" pos="-0.00392243091 -5.411787e-05 0.03187189268" euler="0.40261749 0.27093248 -1.7070713">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_13" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_14" pos="0.00672575877 -0.0056872052 0.01228742454" euler="-1.653756 0.00455583 -2.49848336">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_14" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_15" pos="0.00919364576 0.00107233058 0.02073499409" euler="-1.52010616 -0.000102741516 -1.49088185">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_15" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_mf_taxel_16" pos="0.00016191958 -0.00800774967 0.02215694734" euler="-1.38286616 0.00525309 -3.12116599">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_mftax_16" mesh="robot0:sphere"/>
+                                        </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                    <body name="robot0:rfknuckle" pos="-0.011 0 0.095">
+                        <inertial pos="0 0 0" quat="0.52 0.854 0.006 -0.003" mass="0.008" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                        <joint name="robot0:RFJ3" type="hinge" pos="0 0 0" axis="0 1 0" range="-0.349 0.349" user="1111"></joint>
+                        <geom class="robot0:D_Vizual" name="robot0:V_rfknuckle" mesh="robot0:knuckle"></geom>
+                        <body name="robot0:rfproximal" pos="0 0 0">
+                            <inertial pos="0 0 0.023" quat="0.707 -0.004 0.004 0.707" mass="0.014" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                            <joint name="robot0:RFJ2" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.571" user="1110"></joint>
+                            <geom class="robot0:D_Vizual_Purple" name="robot0:V_rfproximal" mesh="robot0:F3"></geom>
+                            <geom class="robot0:DC_Hand" name="robot0:C_rfproximal" type="capsule" pos="0 0 0.0225" size="0.01 0.0225"></geom>
+                            <body name="robot0:rfmiddle" pos="0 0 0.045">
+                                <inertial pos="0 0 0.012" quat="0.707 0 0 0.707" mass="0.012" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                                <joint name="robot0:RFJ1" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.571" user="1109"></joint>
+                                <geom class="robot0:D_Vizual" name="robot0:V_rfmiddle" mesh="robot0:F2"></geom>
+                                <geom class="robot0:DC_Hand" name="robot0:C_rfmiddle" type="capsule" pos="0 0 0.0125" size="0.00805 0.0125"></geom>
+                                <body name="robot0:rfdistal" pos="0 0 0.025">
+                                    <inertial pos="0 0 0.015" quat="0.707 -0.003 0.003 0.707" mass="0.01" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                                    <joint name="robot0:RFJ0" type="hinge" pos="0 0 0" axis="1 0 0" range="0 0.001" user="1108"></joint> <!-- <joint name="robot0:RFJ0" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.571" user="1108"></joint>-->
+                                    <geom class="robot0:D_Vizual_Orange" name="robot0:V_rfdistal" mesh="robot0:F1" pos="0 0 0.0"></geom>
+                                    <geom class="robot0:DC_Hand" name="robot0:C_rfdistal" type="capsule" pos="0 0 0.012" size="0.00705 0.012" condim="4"></geom>
+                                    <!--<site name="robot0:S_rftip" pos="0 0 0.026" group="3"></site>
+                                    <site class="robot0:D_Touch" name="robot0:Tch_rftip"></site>-->
+                                        <body name="robot0:rftip" pos="0 0 0.026">
+                                        </body>
+                                        <body name="rh_rf_taxel_0" pos="-0.00921687001 0.00099373239 0.02038228873" euler="-1.51978666 0.000144937453 1.45968674">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_0" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_1" pos="-0.00640312645 -0.0065173749 0.01827037076" euler="-1.59559695 -0.000348829319 2.41934577">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_1" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_2" pos="-0.00665973941 -0.00576875338 0.01260740369" euler="-1.65955903 -0.00541627 2.51722701">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_2" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_3" pos="-0.00942467165 0.00123111485 0.01395952052" euler="-1.54268087 6.45535715e-05 1.40876949">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_3" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_4" pos="-0.00867928261 0.00090325075 0.02632664124" euler="-1.29061943 0.00168711 1.52628765">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_4" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_5" pos="0.00569565306 -0.00539249259 0.0253778316" euler="-1.19846222 0.08480638 -2.49594701">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_5" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_6" pos="0.00871833126 0.00099431703 0.0261743809" euler="-1.29057253 -0.00189879 -1.52072868">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_6" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_7" pos="0.00664900914 -0.00630558868 0.01851538873" euler="-1.60361784 0.00059566203 -2.40698274">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_7" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_8" pos="0.00014411317 -0.008049275 0.01493110936" euler="-1.65580869 0.00183052213 -3.13786483">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_8" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_9" pos="-0.00573814208 -0.00542709679 0.02524200553" euler="-1.19878812 -0.08458215 2.49544358">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_9" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_10" pos="0.00942258829 0.00115158208 0.01454831045" euler="-1.54285408 -5.71837391e-05 -1.42527418">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_10" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_11" pos="0.0038067269 -0.00023025534 0.03188900555" euler="-0.46989731 0.10702183 -1.78833246">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_11" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_12" pos="2.61279781e-05 -0.00484799149 0.0292631876" euler="-0.90945336 -0.00352009 -3.1076869">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_12" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_13" pos="-0.00392243091 -5.411787e-05 0.03187189268" euler="0.40261749 0.27093248 -1.7070713">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_13" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_14" pos="0.00672575877 -0.0056872052 0.01228742454" euler="-1.653756 0.00455583 -2.49848336">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_14" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_15" pos="0.00919364576 0.00107233058 0.02073499409" euler="-1.52010616 -0.000102741516 -1.49088185">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_15" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_rf_taxel_16" pos="0.00016191958 -0.00800774967 0.02215694734" euler="-1.38286616 0.00525309 -3.12116599">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_rftax_16" mesh="robot0:sphere"/>
+                                        </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                    <body name="robot0:lfmetacarpal" pos="-0.017 0 0.044">
+                        <inertial pos="-0.014 0.001 0.014" quat="0.709 -0.092 -0.063 0.696" mass="0.075" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                        <joint name="robot0:LFJ4" type="hinge" pos="0 0 0" axis="0.571 0 0.821" range="0 0.19625" user="1116"></joint><!-- <joint name="robot0:LFJ4" type="hinge" pos="0 0 0" axis="0.571 0 0.821" range="0 0.785" user="1116"></joint> -->
+                        <geom class="robot0:D_Vizual" name="robot0:V_lfmetacarpal" pos="-0.016 0 -0.023" mesh="robot0:lfmetacarpal"></geom>
+                        <geom class="robot0:DC_Hand" name="robot0:C_lfmetacarpal" type="box" pos="-0.0165 0 0.01" size="0.0095 0.0111 0.025" rgba="0.4 0.5 0.6 0.2"></geom>
+                        <body name="robot0:lfknuckle" pos="-0.017 0 0.044">
+                            <inertial pos="0 0 0" quat="0.52 0.854 0.006 -0.003" mass="0.008" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                            <joint name="robot0:LFJ3" type="hinge" pos="0 0 0" axis="0 1 0" range="-0.349 0.349" user="1115"></joint>
+                            <geom class="robot0:D_Vizual" name="robot0:V_lfknuckle" mesh="robot0:knuckle"></geom>
+                            <body name="robot0:lfproximal" pos="0 0 0">
+                                <inertial pos="0 0 0.023" quat="0.707 -0.004 0.004 0.707" mass="0.014" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                                <joint name="robot0:LFJ2" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.571" user="1114"></joint>
+                                <geom class="robot0:D_Vizual_Purple" name="robot0:V_lfproximal" mesh="robot0:F3"></geom>
+                                <geom class="robot0:DC_Hand" name="robot0:C_lfproximal" type="capsule" pos="0 0 0.0225" size="0.01 0.0225"></geom>
+                                <body name="robot0:lfmiddle" pos="0 0 0.045">
+                                    <inertial pos="0 0 0.012" quat="0.707 0 0 0.707" mass="0.012" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                                    <joint name="robot0:LFJ1" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.571" user="1113"></joint>
+                                    <geom class="robot0:D_Vizual" name="robot0:V_lfmiddle" mesh="robot0:F2"></geom>
+                                    <geom class="robot0:DC_Hand" name="robot0:C_lfmiddle" type="capsule" pos="0 0 0.0125" size="0.00805 0.0125"></geom>
+                                    <body name="robot0:lfdistal" pos="0 0 0.025">
+                                        <inertial pos="0 0 0.015" quat="0.707 -0.003 0.003 0.707" mass="0.01" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                                        <joint name="robot0:LFJ0" type="hinge" pos="0 0 0" axis="1 0 0" range="0 0.001" user="1112"></joint> <!-- <joint name="robot0:LFJ0" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.571" user="1112"></joint> -->
+                                        <geom class="robot0:D_Vizual_Orange" name="robot0:V_lfdistal" mesh="robot0:F1" pos="0 0 0.0"></geom>
+                                        <geom class="robot0:DC_Hand" name="robot0:C_lfdistal" type="capsule" pos="0 0 0.012" size="0.00705 0.012" condim="4"></geom>
+                                        <!--<site name="robot0:S_lftip" pos="0 0 0.026" group="3"></site>
+                                        <site class="robot0:D_Touch" name="robot0:Tch_lftip"></site>-->
+                                        <body name="robot0:lftip" pos="0 0 0.026">
+                                        </body>
+                                        <body name="rh_lf_taxel_0" pos="-0.00921687001 0.00099373239 0.02038228873" euler="-1.51978666 0.000144937453 1.45968674">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_0" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_1" pos="-0.00640312645 -0.0065173749 0.01827037076" euler="-1.59559695 -0.000348829319 2.41934577">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_1" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_2" pos="-0.00665973941 -0.00576875338 0.01260740369" euler="-1.65955903 -0.00541627 2.51722701">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_2" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_3" pos="-0.00942467165 0.00123111485 0.01395952052" euler="-1.54268087 6.45535715e-05 1.40876949">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_3" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_4" pos="-0.00867928261 0.00090325075 0.02632664124" euler="-1.29061943 0.00168711 1.52628765">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_4" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_5" pos="0.00569565306 -0.00539249259 0.0253778316" euler="-1.19846222 0.08480638 -2.49594701">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_5" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_6" pos="0.00871833126 0.00099431703 0.0261743809" euler="-1.29057253 -0.00189879 -1.52072868">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_6" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_7" pos="0.00664900914 -0.00630558868 0.01851538873" euler="-1.60361784 0.00059566203 -2.40698274">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_7" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_8" pos="0.00014411317 -0.008049275 0.01493110936" euler="-1.65580869 0.00183052213 -3.13786483">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_8" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_9" pos="-0.00573814208 -0.00542709679 0.02524200553" euler="-1.19878812 -0.08458215 2.49544358">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_9" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_10" pos="0.00942258829 0.00115158208 0.01454831045" euler="-1.54285408 -5.71837391e-05 -1.42527418">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_10" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_11" pos="0.0038067269 -0.00023025534 0.03188900555" euler="-0.46989731 0.10702183 -1.78833246">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_11" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_12" pos="2.61279781e-05 -0.00484799149 0.0292631876" euler="-0.90945336 -0.00352009 -3.1076869">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_12" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_13" pos="-0.00392243091 -5.411787e-05 0.03187189268" euler="0.40261749 0.27093248 -1.7070713">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_13" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_14" pos="0.00672575877 -0.0056872052 0.01228742454" euler="-1.653756 0.00455583 -2.49848336">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_14" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_15" pos="0.00919364576 0.00107233058 0.02073499409" euler="-1.52010616 -0.000102741516 -1.49088185">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_15" mesh="robot0:sphere"/>
+                                        </body>
+                                        <body name="rh_lf_taxel_16" pos="0.00016191958 -0.00800774967 0.02215694734" euler="-1.38286616 0.00525309 -3.12116599">
+                                            <geom class="robot0:Sen_Vizual" name="robot0:V_lftax_16" mesh="robot0:sphere"/>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                    <body name="robot0:thbase" pos="0.034 -0.0099 0.029" axisangle="0 1 0 0.785">
+                        <inertial pos="0 0 0" mass="0.01" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                        <joint name="robot0:THJ4" type="hinge" pos="0 0 0" axis="0 0 -1" range="-1.047 1.047" user="1121"></joint>
+                        <geom name="robot0:V_thbase" type="box" group="1" pos="0 0 0" size="0.001 0.001 0.001"></geom>
+                        <body name="robot0:thproximal" pos="0 0 0">
+                            <inertial pos="0 0 0.017" quat="0.982 0 0.001 0.191" mass="0.016" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                            <joint name="robot0:THJ3" type="hinge" pos="0 0 0" axis="1 0 0" range="0 1.222" user="1120"></joint>
+                            <geom class="robot0:D_Vizual_Blue" name="robot0:V_thproximal" mesh="robot0:TH3_z"></geom>
+                            <geom class="robot0:DC_Hand" name="robot0:C_thproximal" type="capsule" pos="0 0 0.019" size="0.013 0.019" rgba="0.4 0.5 0.6 0.1"></geom>
+                            <body name="robot0:thhub" pos="0 0 0.038">
+                                <inertial pos="0 0 0" mass="0.002" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                                <joint name="robot0:THJ2" type="hinge" pos="0 0 0" axis="1 0 0" range="-0.209 0.209" user="1119"></joint>
+                                <geom name="robot0:V_thhub" type="box" group="1" pos="0 0 0" size="0.001 0.001 0.001"></geom>
+                                <body name="robot0:thmiddle" pos="0 0 0">
+                                    <inertial pos="0 0 0.016" quat="1 -0.001 -0.007 0.003" mass="0.016" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                                    <joint name="robot0:THJ1" type="hinge" pos="0 0 0" axis="0 -1 0" range="0 0.698" user="1118"></joint> <!-- <joint name="robot0:THJ1" type="hinge" pos="0 0 0" axis="0 -1 0" range="-0.698 0.698" user="1118"></joint> -->
+                                    <geom class="robot0:D_Vizual" name="robot0:V_thmiddle" mesh="robot0:TH2_z"></geom>
+                                    <!--<geom class="robot0:DC_Hand" name="robot0:C_thmiddle" type="capsule" pos="0 0 0.016" size="0.011 0.016"></geom>--> <!-- 충돌 일어남 손끼리 -->
+                                    <body name="robot0:thdistal" pos="0 0 0.032">
+                                        <inertial pos="0 0 0.016" quat="0.999 -0.005 -0.047 0.005" mass="0.016" diaginertia="1e-05 1e-05 1e-05"></inertial>
+                                        <joint name="robot0:THJ0" type="hinge" pos="0 0 0" axis="0 -1 0" range="-0.262 1.571" user="1117"></joint>
+                                        <body name="robot0:thdistal_temp" euler="0 0 -1.5708"> <!-- z : -1.5708 -->
+                                            <geom class="robot0:D_Vizual_Orange" name="robot0:V_thdistal" mesh="robot0:TH1_z"></geom>
+                                            <geom class="robot0:DC_Hand" name="robot0:C_thdistal" type="capsule" pos="0 0 0.013" size="0.00918 0.013" condim="4"></geom>
+                                            
+                                            <body name="robot0:thtip" pos="0 0 0.0275">
+                                            </body>
+                                            <body name="rh_th_taxel_0" pos="-0.01084760 -0.00000903 0.02343460">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_0" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_1" pos="-0.00714788 -0.00723972 0.02222167">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_1" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_2" pos="-0.00728536 -0.00759231 0.01569926">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_2" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_3" pos="-0.01166503 -0.00030902 0.01706816">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_3" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_4" pos="-0.00952136 0.00069765 0.02994911">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_4" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_5" pos="0.00625485 -0.00634403 0.02869071">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_5" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_6" pos="0.00962486 0.00068828 0.02984653">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_6" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_7" pos="0.00714824 -0.00739307 0.02155333">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_7" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_8" pos="-0.00028400 -0.01014288 0.01822502">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_8" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_9" pos="-0.00645778 -0.00612072 0.02875422">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_9" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_10" pos="0.01173200 -0.00017078 0.01732110">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_10" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_11" pos="0.00517750 0.00134870 0.03691122">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_11" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_12" pos="0.00056169 -0.00567737 0.03349742">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_12" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_13" pos="-0.00584882 0.00127681 0.03637702">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_13" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_14" pos="0.00724415 -0.00767978 0.01590110">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_14" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_15" pos="0.01098045 0.00011695 0.02316846">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_15" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_16" pos="0.00046361 -0.00969138 0.02491551">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_16" mesh="robot0:sphere"/>
+                                            </body>
+                                        </body>
+                                        <!--<body name="robot0:temp_th" pos="0 -0.001 0.001">
+                                            <body name="rh_th_taxel_0" pos="-0.00972934 0.00006547 0.02322031" euler="-1.44982585 -0.00020812 1.59945065">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_0" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_1" pos="-0.00678859 -0.00682804 0.02216820" euler="-1.51571209 -0.00167398 2.40655807">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_1" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_2" pos="-0.00683900 -0.00698007 0.01567987" euler="-1.57147269 -0.00000028 2.50079482">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_2" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_3" pos="-0.01033255 -0.00019998 0.01695037" euler="-1.49660488 -0.00000447 1.57242485">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_3" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_4" pos="-0.00871151 0.00068304 0.02974382" euler="-1.31451327 0.00097190 1.54029857">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_4" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_5" pos="0.00584284 -0.00575444 0.02841435" euler="-1.21300770 0.07915230 -2.49904124">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_5" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_6" pos="0.00874332 0.00068706 0.02962382" euler="-1.32724314 -0.00069202 -1.54681168">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_6" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_7" pos="0.00678657 -0.00688211 0.02151391" euler="-1.51525482 0.00166236 -2.39488770">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_7" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_8" pos="0.00003875 -0.00894986 0.01831622" euler="-1.61454367 0.00471267 -3.13119361">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_8" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_9" pos="-0.00602973 -0.00557534 0.02851725" euler="-1.20741111 -0.08271541 2.50644614">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_9" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_10" pos="0.01031795 -0.00005661 0.01718739" euler="-1.49973096 0.00000177 -1.57149935">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_10" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_11" pos="0.00427101 0.00133447 0.03539385" euler="-0.48614961 -0.01851918 -1.53146519">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_11" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_12" pos="0.00044288 -0.00490764 0.03287451" euler="-0.91769616 -0.00387778 -3.10187213">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_12" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_13" pos="-0.00476177 0.00133321 0.03510657" euler="0.57255288 -0.05296773 -1.55204906">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_13" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_14" pos="0.00677731 -0.00702784 0.01588156" euler="-1.57796384 0.00003558 -2.51646538">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_14" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_15" pos="0.00976721 0.00018196 0.02293966" euler="-1.45016104 0.00011271 -1.58640662">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_15" mesh="robot0:sphere"/>
+                                            </body>
+                                            <body name="rh_th_taxel_16" pos="0.00022809 -0.00853802 0.02466987" euler="-1.34351864 0.00345266 -3.12631207">
+                                                <geom class="robot0:Sen_Vizual" name="robot0:V_thtax_16" mesh="robot0:sphere"/>
+                                            </body>
+                                        </body> -->
+                                        <!--<site name="robot0:S_thtip" pos="0 0 0.0275" group="3"></site>
+                                        <site class="robot0:D_Touch" name="robot0:Tch_thtip" size="0.005 0.011 0.016" pos="-0.005 0 0.02"></site>-->
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </body>
+</mujoco>

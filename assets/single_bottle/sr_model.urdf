@@ -1,0 +1,327 @@
+<?xml version="1.0" ?>
+<robot name="bottle">
+  <link name="link1">
+    <visual>
+      <geometry>
+        <mesh filename="/home/cshen/drlr/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/shadow_hand_lit/assets/single_bottle/cap.obj" scale="1.0 1.0 1.0"/>
+      </geometry>
+      <material name="link1_color">
+        <color rgba="0 1.0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="/home/cshen/drlr/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/shadow_hand_lit/assets/single_bottle/cap.obj" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.04416286286674076"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1.9167690184768486e-05" ixy="-5.818213138829565e-23" ixz="9.309141022127305e-23" iyy="1.9167690184768493e-05" iyz="-1.844789058154749e-22" izz="3.5104000382999454e-05"/>
+    </inertial>
+  </link>
+  <link name="link2">
+    <visual>
+      <geometry>
+        <mesh filename="/home/cshen/drlr/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/shadow_hand_lit/assets/single_bottle/base.obj" scale="1.0 1.0 1.0"/>
+      </geometry>
+      <material name="link2_color">
+        <color rgba="0.9 0.3 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="/home/cshen/drlr/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/shadow_hand_lit/assets/single_bottle/base.obj" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.026205598029388093"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1.653967330320144e-05" ixy="-3.6206776315153025e-23" ixz="1.8140640585591647e-22" iyy="1.653967330320144e-05" iyz="1.2411277676490551e-22" izz="1.59481235227108e-05"/>
+    </inertial>
+  </link>
+  <joint name="b_joint" type="revolute">
+    <parent link="link2"/>
+    <child link="link1"/>
+    <origin rpy="0 0 0" xyz="0 0 0.02595275"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <link name="brake">
+    <visual>
+      <geometry>
+        <box size="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray">
+        <color rgba=".5 .5 .5 0.1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="brake_joint" type="prismatic">
+    <parent link="link2"/>
+    <child link="brake"/>
+    <origin rpy="0 0 0" xyz="0 0 0.052267058834885964"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-0.001" upper="0.001"/>
+  </joint>
+  <link name="link3">
+    <visual>
+      <geometry>
+        <box size="0.005 0.005 0.05"/>
+      </geometry>
+      <material name="box_rot_flag">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="rot_flag" type="fixed">
+    <parent link="link1"/>
+    <child link="link3"/>
+    <origin rpy="0 1.5708 0" xyz="0.01 0 0"/>
+  </joint>
+  <link name="l0">
+    <visual>
+      <geometry>
+        <sphere radius="0.008"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l0" type="fixed">
+    <parent link="link1"/>
+    <child link="l0"/>
+    <origin xyz="0.0400 0.0000 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l1">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l1" type="fixed">
+    <parent link="link1"/>
+    <child link="l1"/>
+    <origin xyz="0.0370 0.0153 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l2">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l2" type="fixed">
+    <parent link="link1"/>
+    <child link="l2"/>
+    <origin xyz="0.0283 0.0283 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l3">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l3" type="fixed">
+    <parent link="link1"/>
+    <child link="l3"/>
+    <origin xyz="0.0153 0.0370 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l4">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l4" type="fixed">
+    <parent link="link1"/>
+    <child link="l4"/>
+    <origin xyz="0.0000 0.0400 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l5">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l5" type="fixed">
+    <parent link="link1"/>
+    <child link="l5"/>
+    <origin xyz="-0.0153 0.0370 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l6">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l6" type="fixed">
+    <parent link="link1"/>
+    <child link="l6"/>
+    <origin xyz="-0.0283 0.0283 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l7">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l7" type="fixed">
+    <parent link="link1"/>
+    <child link="l7"/>
+    <origin xyz="-0.0370 0.0153 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l8">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l8" type="fixed">
+    <parent link="link1"/>
+    <child link="l8"/>
+    <origin xyz="-0.0400 0.0000 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l9">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l9" type="fixed">
+    <parent link="link1"/>
+    <child link="l9"/>
+    <origin xyz="-0.0370 -0.0153 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l10">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l10" type="fixed">
+    <parent link="link1"/>
+    <child link="l10"/>
+    <origin xyz="-0.0283 -0.0283 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l11">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l11" type="fixed">
+    <parent link="link1"/>
+    <child link="l11"/>
+    <origin xyz="-0.0153 -0.0370 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l12">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l12" type="fixed">
+    <parent link="link1"/>
+    <child link="l12"/>
+    <origin xyz="-0.0000 -0.0400 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l13">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l13" type="fixed">
+    <parent link="link1"/>
+    <child link="l13"/>
+    <origin xyz="0.0153 -0.0370 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l14">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l14" type="fixed">
+    <parent link="link1"/>
+    <child link="l14"/>
+    <origin xyz="0.0283 -0.0283 -0.0105" rpy="0 0 0"/>
+  </joint>
+  <link name="l15">
+    <visual>
+      <geometry>
+        <box size="0.0035 0.0035 0.0035"/>
+      </geometry>
+      <material name="box_red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="fixed_l15" type="fixed">
+    <parent link="link1"/>
+    <child link="l15"/>
+    <origin xyz="0.0370 -0.0153 -0.0105" rpy="0 0 0"/>
+  </joint>
+</robot>
