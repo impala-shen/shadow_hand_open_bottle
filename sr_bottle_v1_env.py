@@ -1322,6 +1322,56 @@ class ShadowHandBottleEnv(DirectRLEnv):
         self.bottle.write_root_pose_to_sim(object_default_state[:, :7], env_ids)
         self.bottle.write_root_velocity_to_sim(object_default_state[:, 7:], env_ids)
 
+        self.last_actions[env_ids,:] = 0.0
+        self.last_cube_dof_pos[env_ids] = 0.0
+        self.pid_integral[env_ids,:] = 0.0
+
+        self.sum_force[env_ids] = 0.0
+        self.slip_sum[env_ids] = 0.0
+
+        #grid = torch.arange(10, 131, 20, device=self.device, dtype=torch.float)
+
+        self.desired_force_norm = 10 + 130 * torch.rand(
+           (self.num_envs,), dtype=torch.float, device=self.device
+           ) 
+
+        # cap_limits = torch.tensor([3.0, 30.0]) 
+        # temp_camp = (self.env_cap_dynamics_norm - cap_limits[0])/(cap_limits[1] - cap_limits[0])
+
+        # force_limits =  torch.tensor([10.0, 130.0]) 
+        # self.desired_force_norm =  force_limits[0] + temp_camp*(force_limits[1]-force_limits[0])
+        
+
+
+        self.pre_finger_force_ff = torch.zeros((self.num_envs,3)).to(self.device)
+        self.pre_finger_force_mf = torch.zeros((self.num_envs,3)).to(self.device)
+        self.pre_finger_force_rf = torch.zeros((self.num_envs,3)).to(self.device)
+        self.pre_finger_force_lf = torch.zeros((self.num_envs,3)).to(self.device)
+        self.pre_finger_force_th = torch.zeros((self.num_envs,3)).to(self.device)
+
+        self.pre_cap_force = torch.zeros((self.num_envs,3)).to(self.device)
+
+        self.force_progress_buf[env_ids] = -1000
+
+        # # Reset torque setup
+        # (
+        #     torque_lower,
+        #     torque_upper,
+        # ) = self.randomizer.get_object_dof_friction_scaling_setup()
+        # torque_lower, torque_upper = (
+        #     self.brake_torque * torque_lower,
+        #     self.brake_torque * torque_upper,
+        # )
+        # self.object_brake_torque[env_ids] = (
+        #     torch.rand(len(env_ids)).to(self.device) * (torque_upper - torque_lower)
+        #     + torque_lower
+        # )
+
+
+        #self.left_control_work = torch.zeros_like(self.left_control_work)
+        self.right_control_work = torch.zeros_like(self.right_control_work)
+        self.control_work = torch.zeros_like(self.control_work)
+
         self.reward_function.reset(env_ids)
 
         # self.successes[env_ids] = 0
