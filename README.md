@@ -1,5 +1,5 @@
 # shadow_hand_open_bottle
-Migrate shadow hand open lit task from IsaacGym tn IsaacLab based on tutorial in (https://isaac-sim.github.io/IsaacLab/main/source/migration/migrating_from_isaacgymenvs.html)
+Migrate shadow hand open lit task from IsaacGym (https://github.com/RobotEmperor/SR-Tac2Motion/tree/ver_1) to IsaacLab based on tutorial in (https://isaac-sim.github.io/IsaacLab/main/source/migration/migrating_from_isaacgymenvs.html)
 
 # General info
 Project is created with:
